@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/soccer.css">
+</head>
+<body>
+    <div class="soccer-container">
+        <div class="top-div" id="profil_content" style="display: block;">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text">HOME TEAM</span>
+                <input class="form-control" type="text" id="home_team_input">
+              </div>
+              <br>
+              <div class="input-group">
+                  <span class="input-group-text">AWAY TEAM</span>
+                  <input class="form-control" type="text" id="away_team_input">
+              </div>
+              <br>
+              <div class="input-group">
+                  <span class="input-group-text">DATE</span>
+                  <input class="form-control" type="datetime-local" id="date_input">
+              </div>
+              <br>
+              <div class="input-group">
+                  <span class="input-group-text">ANALYSIS</span>
+                  <select class="form-control" name="analysis" id="select_team_input">
+                      <option value="home">HOME</option>
+                      <option value="away">AWAY</option>
+                  </select>    
+              </div>
+              <br>
+              <div class="input-group">
+                  <span class="input-group-text">SENSE OF ATTACK</span>
+                  <select class="form-control" name="analysis" id="select_sense_attack_input">
+                      <option value="right">RIGHT</option>
+                      <option value="left">LEFT</option>
+                  </select>    
+              </div>
+              <br>
+              <div class="input-group">
+                <span class="input-group-text">FRAME</span>
+                <input class="form-control" type="text" id="frame_input" value="1">
+              </div>
+              <br>
+              <button class="btn btn-primary" id="home_team_player_modal_btn">HOME TEAM PLAYERS</button>
+              <br><br>
+              <button class="btn btn-info" id="away_team_player_modal_btn">AWAY TEAM PLAYERS</button>
+            </div>
+          </div>
+        </div>
+        <div class="top-div" id="position_pitch_content">
+        </div>
+        <div class="top-div" id="orientation_pitch_content">
+        </div>
+        <div class="top-div" id="export_content">
+            <button class="btn btn-primary" onclick="exportPinpointCoordinatesToCSV()">EXPORT TO CSV</button>
+            <!-- <button class="btn btn-primary" style="float: right;">REDO</button> -->
+            <br><br>
+            <table class="table table-bordered text-center" id="export_table">
+                <tr>
+                    <th>x</th>
+                    <th>y</th>
+                    <th>x1</th>
+                    <th>y1</th>
+                    <th>label</th>
+                    <th>player</th>
+                    <th>receiver</th>
+                    <th>frame</th>
+                    <th>home team</th>
+                    <th>away team</th>
+                    <th>date</th>
+                    <th>team analyzed</th>
+                    <th>sense of attack</th>
+                    <th>cancel</th>
+                </tr>
+            </table>
+        </div>
+        <div class="bottom-div">
+            <div class="button-container">
+                <button class="bottom-btn" id="profil_bottom_btn" data-id="profil_content" onclick="showTopContent('profil_content')">PROFIL</button>
+                <button class="bottom-btn" id="position_bottom_btn" data-id="position_pitch_content" onclick="showTopContent('position_pitch_content')">POSITION</button>
+                <button class="bottom-btn" id="orientation_bottom_btn" data-id="orientation_pitch_content" onclick="showTopContent('orientation_pitch_content')">ORIENTATION</button>
+                <button class="bottom-btn" id="export_bottom_btn" data-id="export_content" onclick="showTopContent('export_content')">EXPORT</button>
+            </div>
+        </div>
+
+        <!-- home team player modal -->
+        <div class="modal" id="home_team_player_modal" data-bs-backdrop="static">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header text-center">
+                <h4 class="modal-title" style="width: 100%;">PLAYERS(HOME TEAM)</h4>
+              </div>
+        
+              <!-- Modal body -->
+              <div class="modal-body text-center" id="home_team_player_modal_body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <input class="form-control player_name_input1" id="home_team_player_1" value="home_1" placeholder="player name 1"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_2" value="home_2" placeholder="player name 2"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_3" value="home_3" placeholder="player name 3"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_4" value="home_4" placeholder="player name 4"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_5" value="home_5" placeholder="player name 5"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_6" value="home_6" placeholder="player name 6"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_7" value="home_7" placeholder="player name 7"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_8" value="home_8" placeholder="player name 8"></input>  
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control player_name_input1" id="home_team_player_9" value="home_9" placeholder="player name 9"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_10" value="home_10" placeholder="player name 10"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_11" value="home_11" placeholder="player name 11"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_12" value="home_12" placeholder="player name 12"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_13" value="home_13" placeholder="player name 13"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_14" value="home_14" placeholder="player name 14"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_15" value="home_15" placeholder="player name 15"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_16" value="home_16" placeholder="player name 16"></input>  
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control player_name_input1" id="home_team_player_17" value="home_17" placeholder="player name 17"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_18" value="home_18" placeholder="player name 18"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_19" value="home_19" placeholder="player name 19"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_20" value="home_20" placeholder="player name 20"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_21" value="home_21" placeholder="player name 21"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_22" value="home_22" placeholder="player name 22"></input>
+                    <input class="form-control player_name_input1" id="home_team_player_23" value="home_23" placeholder="player name 23"></input>  
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Modal footer -->
+              <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" id="close_home_team_player_modal_btn">Save</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+
+        <!-- away team player name modal -->
+        <div class="modal" id="away_team_player_modal" data-bs-backdrop="static">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header text-center">
+                <h4 class="modal-title" style="width: 100%;">PLAYERS(AWAY TEAM)</h4>
+              </div>
+        
+              <!-- Modal body -->
+              <div class="modal-body text-center" id="away_team_player_modal_body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <input class="form-control player_name_input2" id="away_team_player_1" value="away_1" placeholder="player name 1"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_2" value="away_2" placeholder="player name 2"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_3" value="away_3" placeholder="player name 3"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_4" value="away_4" placeholder="player name 4"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_5" value="away_5" placeholder="player name 5"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_6" value="away_6" placeholder="player name 6"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_7" value="away_7" placeholder="player name 7"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_8" value="away_8" placeholder="player name 8"></input>  
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control player_name_input2" id="away_team_player_9" value="away_9" placeholder="player name 9"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_10" value="away_10" placeholder="player name 10"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_11" value="away_11" placeholder="player name 11"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_12" value="away_12" placeholder="player name 12"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_13" value="away_13" placeholder="player name 13"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_14" value="away_14" placeholder="player name 14"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_15" value="away_15" placeholder="player name 15"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_16" value="away_16" placeholder="player name 16"></input>  
+                  </div>
+                  <div class="col-md-4">
+                    <input class="form-control player_name_input2" id="away_team_player_17" value="away_17" placeholder="player name 17"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_18" value="away_18" placeholder="player name 18"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_19" value="away_19" placeholder="player name 19"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_20" value="away_20" placeholder="player name 20"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_21" value="away_21" placeholder="player name 21"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_22" value="away_22" placeholder="player name 22"></input>
+                    <input class="form-control player_name_input2" id="away_team_player_23" value="away_23" placeholder="player name 23"></input>  
+                  </div>
+                </div>
+              </div>
+        
+              <!-- Modal footer -->
+              <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" id="close_away_team_player_modal_btn">Save</button>
+              </div>
+        
+            </div>
+          </div>
+        </div>
+
+        <!-- position first modal -->
+        <div class="modal" id="position-first-modal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                  <h4 class="modal-title" style="width: 100%;">ACTION TYPE</h4>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body text-center" id="position_first_modal_body">
+                    <button class="btn btn-primary" id="recovery_btn" >RECOVERY</button>
+                    <br><br>
+                    <button class="btn btn-warning" id="loss_btn" >LOSS</button>
+                    <br><br>
+                    <button class="btn btn-danger" id="three_loss_btn" >LOSS(+3 TOUCHES)</button>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer text-center">
+                  <button type="button" class="btn btn-danger cancel-modal-btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+          
+              </div>
+            </div>
+        </div>
+        <!-- position player modal -->
+        <div class="modal" id="position-player-modal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                  <h4 class="modal-title" style="width: 100%;">PLAYERS(POSITION)</h4>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body text-center" id="position_player_modal_body">
+                    <button class="btn btn-primary player-btn" id="player_1">Player 1</button>
+                    <button class="btn btn-primary player-btn" id="player_2">Player 2</button>
+                    <button class="btn btn-primary player-btn" id="player_3">Player 3</button>
+                    <button class="btn btn-primary player-btn" id="player_4">Player 4</button>
+                    <button class="btn btn-primary player-btn" id="player_5">Player 5</button>
+                    <br><br>
+                    <button class="btn btn-primary player-btn" id="player_6">Player 6</button>
+                    <button class="btn btn-primary player-btn" id="player_7">Player 7</button>
+                    <button class="btn btn-primary player-btn" id="player_8">Player 8</button>
+                    <button class="btn btn-primary player-btn" id="player_9">Player 9</button>
+                    <button class="btn btn-primary player-btn" id="player_10">Player 10</button>
+                    <br><br>
+                    <button class="btn btn-primary player-btn" id="player_11">Player 11</button>
+                    <button class="btn btn-primary player-btn" id="player_12">Player 12</button>
+                    <button class="btn btn-primary player-btn" id="player_13">Player 13</button>
+                    <button class="btn btn-primary player-btn" id="player_14">Player 14</button>
+                    <button class="btn btn-primary player-btn" id="player_15">Player 15</button>
+                    <br><br>
+                    <button class="btn btn-primary player-btn" id="player_16">Player 16</button>
+                    <button class="btn btn-primary player-btn" id="player_17">Player 17</button>
+                    <button class="btn btn-primary player-btn" id="player_18">Player 18</button>
+                    <button class="btn btn-primary player-btn" id="player_19">Player 19</button>
+                    <button class="btn btn-primary player-btn" id="player_20">Player 20</button>
+                    <br><br>
+                    <button class="btn btn-primary player-btn" id="player_21">Player 21</button>
+                    <button class="btn btn-primary player-btn" id="player_22">Player 22</button>
+                    <button class="btn btn-primary player-btn" id="player_23">Player 23</button>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer text-center">
+                  <button type="button" class="btn btn-danger cancel-modal-btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+          
+              </div>
+            </div>
+        </div>
+        <!-- orientation first modal -->
+        <div class="modal" id="orientation-first-modal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                  <h4 class="modal-title" style="width: 100%;">KIND OF ACTIONS</h4>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body text-center" id="orientation_first_modal_body">
+                    <button class="btn btn-success" id="success_pass_btn" >SUCCESS PASS</button>
+                    <br><br>
+                    <button class="btn btn-danger" id="failed_pass_btn" >FAILED PASS</button>
+                    <br><br>
+                    <button class="btn btn-primary" id="progress_btn" >PROGRESS</button>
+                    <br><br>
+                    <button class="btn btn-warning" id="call_btn" >CALL</button>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer text-center">
+                  <button type="button" class="btn btn-danger cancel-modal-btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+          
+              </div>
+            </div>
+        </div>
+        <!-- orientation passer modal -->
+        <div class="modal" id="orientation-passer-modal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                  <h4 class="modal-title" style="width: 100%;" id="orientation_player_modal_body">PASSERS(ORIENTATION)</h4>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body text-center" id="orientation_passer_modal_body">
+                    <button class="btn btn-primary passer-btn" id="passer_1">Player 1</button>
+                    <button class="btn btn-primary passer-btn" id="passer_2">Player 2</button>
+                    <button class="btn btn-primary passer-btn" id="passer_3">Player 3</button>
+                    <button class="btn btn-primary passer-btn" id="passer_4">Player 4</button>
+                    <button class="btn btn-primary passer-btn" id="passer_5">Player 5</button>
+                    <br><br>
+                    <button class="btn btn-primary passer-btn" id="passer_6">Player 6</button>
+                    <button class="btn btn-primary passer-btn" id="passer_7">Player 7</button>
+                    <button class="btn btn-primary passer-btn" id="passer_8">Player 8</button>
+                    <button class="btn btn-primary passer-btn" id="passer_9">Player 9</button>
+                    <button class="btn btn-primary passer-btn" id="passer_10">Player 10</button>
+                    <br><br>
+                    <button class="btn btn-primary passer-btn" id="passer_11">Player 11</button>
+                    <button class="btn btn-primary passer-btn" id="passer_12">Player 12</button>
+                    <button class="btn btn-primary passer-btn" id="passer_13">Player 13</button>
+                    <button class="btn btn-primary passer-btn" id="passer_14">Player 14</button>
+                    <button class="btn btn-primary passer-btn" id="passer_15">Player 15</button>
+                    <br><br>
+                    <button class="btn btn-primary passer-btn" id="passer_16">Player 16</button>
+                    <button class="btn btn-primary passer-btn" id="passer_17">Player 17</button>
+                    <button class="btn btn-primary passer-btn" id="passer_18">Player 18</button>
+                    <button class="btn btn-primary passer-btn" id="passer_19">Player 19</button>
+                    <button class="btn btn-primary passer-btn" id="passer_20">Player 20</button>
+                    <br><br>
+                    <button class="btn btn-primary passer-btn" id="passer_21">Player 21</button>
+                    <button class="btn btn-primary passer-btn" id="passer_22">Player 22</button>
+                    <button class="btn btn-primary passer-btn" id="passer_23">Player 23</button>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer text-center">
+                  <button type="button" class="btn btn-danger cancel-modal-btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+          
+              </div>
+            </div>
+        </div>
+        <!-- orientation receiver modal -->
+        <div class="modal" id="orientation-receiver-modal" data-bs-backdrop="static">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                  <h4 class="modal-title" style="width: 100%;">RECEIVERS(ORIENTATION)</h4>
+                </div>
+          
+                <!-- Modal body -->
+                <div class="modal-body text-center" id="orientation_receiver_modal_body">
+                    <button class="btn btn-primary receiver-btn" id="receiver_1">Player 1</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_2">Player 2</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_3">Player 3</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_4">Player 4</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_5">Player 5</button>
+                    <br><br>
+                    <button class="btn btn-primary receiver-btn" id="receiver_6">Player 6</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_7">Player 7</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_8">Player 8</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_9">Player 9</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_10">Player 10</button>
+                    <br><br>
+                    <button class="btn btn-primary receiver-btn" id="receiver_11">Player 11</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_12">Player 12</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_13">Player 13</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_14">Player 14</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_15">Player 15</button>
+                    <br><br>
+                    <button class="btn btn-primary receiver-btn" id="receiver_16">Player 16</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_17">Player 17</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_18">Player 18</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_19">Player 19</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_20">Player 20</button>
+                    <br><br>
+                    <button class="btn btn-primary receiver-btn" id="receiver_21">Player 21</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_22">Player 22</button>
+                    <button class="btn btn-primary receiver-btn" id="receiver_23">Player 23</button>
+                </div>
+          
+                <!-- Modal footer -->
+                <div class="modal-footer text-center">
+                  <button type="button" class="btn btn-danger cancel-modal-btn" data-bs-dismiss="modal">Cancel</button>
+                </div>
+          
+              </div>
+            </div>
+        </div>
+
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+          <div id="myToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+              <strong class="me-auto">Warning</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toast_body">
+              Please complete you profil.
+            </div>
+          </div>
+        </div>
+
+        <!-- confirm modal -->
+        <div class="modal" id="confirm_modal">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header text-center">
+                <h4 class="modal-title" style="width: 100%;">Delete this row?</h4>
+              </div>
+        
+              <!-- Modal body -->
+              <div class="modal-body text-center">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="delete_row_btn">Delete</button>
+                  <button type="button" class="btn btn-danger cancel-modal-btn" data-bs-dismiss="modal">Cancel</button>  
+              </div>
+        
+              <!-- Modal footer -->
+        
+            </div>
+          </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="./js/soccer.js"></script>
+</body>
+</html>

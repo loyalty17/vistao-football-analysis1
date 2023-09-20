@@ -1,0 +1,192 @@
+.pinpoint01 {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.pinpoint02 {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.pinpoint03 {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.pinpoint04 {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.pinpoint05 {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.pinpoint1 {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.pinpoint2 {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+}
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+/* Variables CSS */
+:root {
+    /* Colors */
+    --hue: 240;
+    --first-color: hsl(var(--hue), 16%, 18%);
+    --first-color-alt: hsl(var(--hue), 16%, 12%);
+    --title-color: hsl(var(--hue), 8%, 15%);
+    --text-color: hsl(var(--hue), 8%, 35%);
+    --body-color: hsl(var(--hue), 100%, 99%);
+    --container-color: #FFF;
+
+    /* Font and typography */
+    --body-font: 'Poppins', sans-serif;
+    --big-font-size: 1.5rem;
+    --normal-font-size: .938rem;
+
+    /* z index */
+    --z-modal: 1000;
+}
+
+@media screen and (min-width: 968px) {
+    :root {
+        --big-font-size: 1.75rem;
+        --normal-font-size: 1rem;
+    }
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+.soccer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.top-div {
+    display: none;
+    flex: 1;
+    border: 1px solid #000;
+    padding: 20px;
+    overflow: auto;
+}
+.bottom-div {
+    height: 50px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+}
+.button-container {
+    display: flex;
+    height: 100%;
+    flex: 1;
+    justify-content: space-between;
+}
+.bottom-btn {
+    flex: 1;
+    height: 100%;
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.bottom-btn:hover,
+.bottom-btn.active {
+    background-color: #0056b3;
+}
+
+#profil_content {
+    background-image: url(../asset/img/profil_2.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#position_pitch_content {
+    background-image: url(../asset/img/pitch.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#orientation_pitch_content {
+    background-image: url(../asset/img/pitch.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.input-group-text {
+    width: 150px;
+}
+
+.input-group {
+    width: 80%;
+}
+
+#home_player_modal_body input {
+    width: 120px;
+}
+
+#position_first_modal_body button {
+    width: 200px;
+    cursor: pointer;
+}
+
+#position_player_modal_body button {
+    width: 120px;
+    cursor: pointer;
+}
+
+#orientation_first_modal_body button {
+    width: 200px;
+    cursor: pointer;
+}
+
+#orientation_passer_modal_body button {
+    width: 120px;
+    cursor: pointer;
+}
+
+#orientation_receiver_modal_body button {
+    width: 120px;
+    cursor: pointer;
+}
+
+.player_name_input1 {
+    margin-bottom: 5px;
+}
+
+.player_name_input2 {
+    margin-bottom: 5px;
+}
